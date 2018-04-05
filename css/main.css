@@ -1,0 +1,25 @@
+
+/* Main style */
+body {
+    font-family: 'Open Sans';
+    font-size: 16px;
+         background-image: url('../img/111.jpg') ;
+    -moz-background-size: 100%; /* Firefox 3.6+ */
+    -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
+    -o-background-size: 100%; /* Opera 9.6+ */
+    background-size: 100%; /* Современные браузеры */
+  
+}
+
+/* Header styles */
+.header {
+    padding-top: 10px;
+    background: rgb(17,17,19);
+    border-bottom: 2px solid darkgray;
+    color: white;
+    margin-bottom: 50px;
+}
+
+ 
+.icon-play:before { content: '\e800'; } /* '' */
+.icon-cw:before { content: '\e801'; } /* '' */
