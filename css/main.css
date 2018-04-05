@@ -20,6 +20,29 @@ body {
     margin-bottom: 50px;
 }
 
+.header h1 {
+    font-size: 1.5em;
+    font-family: 'Montserrat';
+}
+.header a {
+    color: white;
+}
+
+/* Intro стили */
+#intro p {
+    font-size: 1.2em;
+}
+#intro img {
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    
+}
+#btn-start {
+    width: 250px;
+    margin: 0 auto;
+}
+
  
 .icon-play:before { content: '\e800'; } /* '' */
 .icon-cw:before { content: '\e801'; } /* '' */
