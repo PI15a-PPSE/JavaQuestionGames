@@ -191,7 +191,7 @@ var quiz = {
 	
 	//Вернуть вопрос на основе текущего номера вопроса
 	function constructQuestion(quiz) {
-    return quiz.questions[quiz.randomQuestions[quiz.questionNumbers]].question;
+    return quiz.questions[quiz.randomQuestions[quiz.questionNumber]].question;
 }
 
 	function runQuiz(quiz) {
@@ -234,4 +234,23 @@ var quiz = {
     // Если ответ был верный, то увеличиваем прогресс бар, если нет, тоже...
     $('.bg-success').css('width', quiz.correct * 10 + "%");
     $('.bg-danger').css('width', quiz.incorrect * 10 + "%");
+}
+
+// Управление экраном при успешном/неуспешном выполнении
+function failSuccess(quiz, userAnswer) {
+    if (checkAnswer(userAnswer, quiz)) {
+        // успех
+        $('#question-main-content').fadeOut('fast', function() {
+            $('.answer-success h2').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].success[0]);
+            $('.answer-success p').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].success[1]);
+            $('.answer-success').removeAttr('hidden');
+        });
+    } else {
+        // ошибка
+        $('#question-main-content').fadeOut('fast', function() {
+            $('.answer-failure h2').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].failure[0]);
+            $('.desc-fail-message').text(quiz.questions[quiz.randomQuestions[quiz.questionNumber]].failure[1]);
+            $('.answer-failure').removeAttr('hidden');
+        });
+    }
 }
