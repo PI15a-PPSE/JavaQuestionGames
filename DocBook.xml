@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glossary PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN"
+"http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<glossary>
+  <glossdiv>
+    <title>Программный продукт JavaQuestionGames</title>
+
+    <glossentry>
+      <glossterm>1. Описание продукта</glossterm>
+
+      <glossdef>
+        <para>Программный продукт <emphasis
+        role="bold">JavaQuestionGames</emphasis> был разработан для
+        определения уровня знаний начинающих Java-разработчиков. Программный
+        продукт представляет собой <emphasis>"Игру-Викторину"</emphasis>, в
+        которой пользователяю необходимо выбирать правильный вариант ответа из
+        предложенных. Данная Викторина включает в себя 10 вопросов, которые
+        позволят определить все сильны и слабые стороны тестируемого
+        человека.</para>
+      </glossdef>
+    </glossentry>
+
+    <glossentry>
+      <glossterm>2. Первый запуск</glossterm>
+
+      <glossdef>
+        <para>При первом запуске игры пользователю необходимо нажать кнопку
+        "Начать опрос". Следующим этапом пользователь сможет выбрать
+        непосредственно вариант ответа, после чего будет доступна клавиша
+        продолжения. Обработка клавиши продолжения происходит следующей
+        функцией в коде:</para>
+
+        <programlisting>$('#questions').on('click', '.btn-next', function() {
+        var userAnswer = $('input[name=option]:checked').siblings('.options').text();
+        calculateScore(checkAnswer(userAnswer, quiz), quiz);
+        failSuccess(quiz, userAnswer);
+        // Сбросить для кнопки 
+        $('.radio label').children('input[type="radio"]').prop('checked', false);
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        // Отключить кнопку отправки еще раз
+        $('.action-button .btn-next').addClass('disabled');
+    });3</programlisting>
+
+        <address>В начале программа получит текст, который выбрал пользователь, затем сверит его с текстом верного ответа, и если он совпадет, то увеличится счетчик.</address>
+
+        <para>Обработка правильности ответа представлена ниже:</para>
+
+        <programlisting>function checkAnswer(userAnswer, quiz) {
+    // верный ответ
+    if (userAnswer === quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer]) {
+        return true;
+    }
+    else {
+        // иначе
+        $(".desc-wrong-answer").html("Правильный ответ это: &lt;strong&gt;" + quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer] + "&lt;/strong&gt;.");
+        return false;
+    }
+}</programlisting>
+
+        <literallayout>Также, пользователь в любой момент может начать игру заново, нажав на кнопку "Повторить". Нажате этой кнопки обрабатывается следующим образом:</literallayout>
+
+        <programlisting>$('#questions').on('click', '.btn-reset', function() {
+        resetQuiz(quiz);
+        runQuiz(quiz);
+        // Сбросить и снять флажки переключателей
+        $('.radio label').children('input[type="radio"]').prop('checked', false);
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        // Отключение повторного нажатия кнопки
+        $('.action-button .btn-next').addClass('disabled');
+    });</programlisting>
+
+        <para>Таким образом, было рассмотрено 3 варианта развития событий, с
+        приведенным кодом.</para>
+      </glossdef>
+    </glossentry>
+  </glossdiv>
+</glossary>
