@@ -1,3 +1,14 @@
+/**
+ * Структура вопросов
+ *
+ * Используем внутри массив 
+ * номеров вопросов, варианты 
+ * ответов и массив самих 
+ * вопросов.
+ * 
+ *
+ * @var quiz
+ */
 var quiz = {
     // порядок вопросов в игре
     randomQuestions: [],
@@ -255,11 +266,31 @@ var quiz = {
 	
 	});
 	
-	//Вернуть вопрос на основе текущего номера вопроса
+/**
+ * Работа со свойством {@link quiz}
+ *
+ * Возвращается текст нового вопроса
+ *
+ * @param var quiz Структура вопросов
+ * @return quiz Возвращает текст нового
+ * вопроса
+ */
 	function constructQuestion(quiz) {
     return quiz.questions[quiz.randomQuestions[quiz.questionNumber]].question;
 }
 
+/**
+  * Работа со свойством {@link quiz}
+  *
+  * Работы с вопросами, отвечает 
+  * за смену вопросов, а также
+  * за смену количества верных
+  * ответов, изменяет прогресс-бар
+  * ответов, показывая сколько
+  * верных или неверных ответов.
+  *
+  * @param var quiz Структура вопросов
+  */
 	function runQuiz(quiz) {
 
     // Смотрим что пользователь снова нажал кнопку воспроизведения на экране завершения
@@ -302,6 +333,16 @@ var quiz = {
     $('.bg-danger').css('width', quiz.incorrect * 10 + "%");
 }
 
+/**
+  * Работа со свойством {@link quiz, userAnswer}
+  *
+  * Если пользователь дал верный ответ,
+  * то будет выведен определенный 
+  * результат, также и если неверный.
+  *
+  * @param var quiz Структура вопросов
+  * @param var userAnswer Текст ответа пользователя
+  */
 // Управление экраном при успешном/неуспешном выполнении
 function failSuccess(quiz, userAnswer) {
     if (checkAnswer(userAnswer, quiz)) {
@@ -321,6 +362,13 @@ function failSuccess(quiz, userAnswer) {
     }
 }
 
+/**
+  * Работа со свойством {@link quiz}
+  *
+  * Обновляет все свойства
+  *
+  * @param var quiz Структура вопросов
+  */
 // Начать заного
 function resetQuiz(quiz) {
     quiz.randomQuestions = shuffleArr([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
@@ -329,6 +377,17 @@ function resetQuiz(quiz) {
     quiz.incorrect = 0;
 }
 
+
+/**
+  * Работа со свойством {@link quiz, userAnswer}
+  *
+  * Если пользователь дал верный ответ,
+  * то вовзращаем истину, иначе 
+  * выводим верный ответ и возвращаем ложь
+  *
+  * @param var quiz Структура вопросов
+  * @param var userAnswer Текст ответа пользователя
+  */
 // Вернет правду или ложь на ответ пользователя
 function checkAnswer(userAnswer, quiz) {
     // верный ответ
@@ -342,6 +401,17 @@ function checkAnswer(userAnswer, quiz) {
     }
 }
 
+/**
+  * Работа со свойством {@link quiz}
+  * Работа с функцией {@link checkAnswer(userAnswer, quiz)}
+  *
+  * Если пользователь дал верный ответ,
+  * то увеличиваем счетчик верных ответов,
+  * иначе - неверных
+  *
+  * @param var quiz Структура вопросов
+  * @param var answerResult Верность ответа пользователя
+  */
 // Подсчет, сколько верных и неверных ответов
 function calculateScore(answerResult, quiz) {
     if (answerResult) {
@@ -351,6 +421,13 @@ function calculateScore(answerResult, quiz) {
     }
 }
 
+/**
+  * Работа со свойством {@link array}
+  *
+  * Генерация последовательности вопросов
+  *
+  * @param var array Массив номеров вопросов
+  */
 // Генерирует уникальные рандомные числа от 0 до 10
 function shuffleArr(array) {
     for (var i = array.length - 1; i > 0; i--) {
