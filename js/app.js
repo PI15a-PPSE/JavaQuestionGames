@@ -178,7 +178,7 @@ var quiz = {
     }]
 };
 
- 
+
  $(function() {
  $('#btn-start').click(function() {
         $('#intro').fadeOut('fast', function() {
@@ -189,6 +189,11 @@ var quiz = {
 	
 	});
 	
+	//Вернуть вопрос на основе текущего номера вопроса
+	function constructQuestion(quiz) {
+    return quiz.questions[quiz.randomQuestions[quiz.questionNumbers]].question;
+}
+
 	function runQuiz(quiz) {
 
     // Смотрим что пользователь снова нажал кнопку воспроизведения на экране завершения
