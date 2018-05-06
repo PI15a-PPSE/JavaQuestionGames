@@ -16,164 +16,164 @@ var quiz = {
         correctAnswer: 0,
         success: [
             "Поздравляем!",
-            "Кажется, здесь все понятно"
+            "Вы не попались на уловку буквы l!"
         ],
         failure: [
             "Ошибка!",
             "Вас визуально обманули."
         ]
     }, {
-        question: "Скомпилируется ли данный код и если да — то каким будет вывод?\nint[][] array = {{1, 2, 3}, {0, 0, 0,},};\nSystem.out.println(Arrays.deepToString(array)); ",
+        question: "Можно ли динамически менять размер массива? ",
         answers: [
-            "Ошибка компиляции",
-            "[[1, 2, 3], [0, 0, 0]]",
-            "[[1, 2, 3], [0, 0, 0],[0]]",
-            "[[1, 2, 3], [0, 0, 0],null]"
+            "Да, можно",
+            "Нет, нельзя",
+            "Его можно потом расширить",
+            "Да,после его заполнения"
         ],
         correctAnswer: 1,
         success: [
-            "Знаток Джавы, браво!",
-            "Лишняя запятая тебя не остановила."
+            "Поздравляю!",
+            "Размер массива не может изменяться"
         ],
         failure: [
-            "Ты Junior, верно?",
-            "Эх,эта запятая сбила тебя с толку.Компилятор просто игнорирует одну лишнюю запятую в конце массива. Причём именно одну — две подряд уже вызовут ошибку компиляции."
+            "Ой, студент! Ошибка!",
+            "Размер массива определяется при его создании и в дальнейшем не может изменяться."
         ]
     }, {
-        question: "What's the name of the explosive that gave the Lannisters the edge in the Battle of Blackwater?",
+        question: "Из какой структуры данных сборщик мусора удалит все элементы у которых исчезла последняя ссылка на их ключ в этой структуре?",
         answers: [
-            "Wildfire",
-            "Dragonfire",
-            "Godsfire",
-            "Pantsonfire"
-        ],
-        correctAnswer: 0,
-        success: [
-            "Boo-ya!",
-            "By what right does the wolf judge the lion?"
-        ],
-        failure: [
-            "Eeeks!",
-            "Nothing burns like the cold."
-        ]
-    }, {
-        question: "How is \"The Queen Of Thorns\" more commonly known?",
-        answers: [
-            "Cersei Lannister",
-            "Margaery Tyrell",
-            "Olenna Tyrell",
-            "E Jarvis Thribb"
+            "HashMap",
+            "LinkedHashMap",
+            "WeakHashMap",
+            "IdentityHashMap"
         ],
         correctAnswer: 2,
         success: [
-            "Ooh-la-la!",
-            "Valar Morghulis!"
+            "Ух-ты!",
+            "А ты мастер хэш-функций :)"
         ],
         failure: [
-            "Neener-neener!",
-            "A bruise is a lesson... and each lesson makes us better."
+            "Ошибочка!",
+            "WeakHashMap, фактически, хранит не пары ключ - значение, а пары слабая ссылка на ключ - значение. Особенность слабых ссылок (WeakReference) состоит в том, что они игнорируются сборщиком мусора, т.е. если на объект-ключ нет других ссылок, он уничтожается"
         ]
     }, {
-        question: "What is Pycelle's official title in the Red Keep?",
+        question: "Можно ли переопределяя метод изменить его модификатор доступа с package-private на protected?",
         answers: [
-            "Master of Coin",
-            "Games Maester",
-            "Lord Commander of the Kingsguard",
-            "Grand Maester"
-        ],
-        correctAnswer: 3,
-        success: [
-            "Sis boom bah!",
-            "Fire cannot kill a dragon."
-        ],
-        failure: [
-            "Tchah!",
-            "The man who fears losing has already lost."
-        ]
-    }, {
-        question: "Which Lannister song signalled doom at the Red Wedding?",
-        answers: [
-            "The Rains Of Castermere",
-            "A Golden Crown",
-            "The Assassin's Dagger",
-            "Tales Of Topographic Oceans"
+            "Да",
+            "Нет",
+            "Только с условием",
+            "В Java-нет"
         ],
         correctAnswer: 0,
         success: [
-            "Ride like the wind!",
-            "The only time a man can be brave is when he's afraid."
+            "Молодец!",
+            "Ты, видимо, не прогуливал лекции"
         ],
         failure: [
-            "Bam!",
-            "There is only one god, and his name is Death."
+            "Как-бы не так!",
+            "Так как модификатор protected накладывает меньше ограничений, чем модификатор доступа по умолчанию, то такое переопределение разрешено."
         ]
     }, {
-        question: "What piece of fencing advice did Jon Snow give to Arya Stark? \"Stick them with the…\"",
+        question: "Как можно уничтожить объект в Java?",
         answers: [
-            "\"…Prickly end\"",
-            "\"…Sharp end\"",
-            "\"…Futtocks End\"",
-            "\"…Pointy end\""
+            "Присвоить null всем ссылкам на объект",
+            "Вызвать Runtime.getRuntime().gc()",
+            "Вызвать метод finalize() у объекта",
+            "Этого нельзя сделать вручную"
         ],
         correctAnswer: 3,
         success: [
-            "Whoop-de-doo!",
-            "If we die, we die but first we'll live."
+            "Java- как девушка!",
+            "Никогда не знаешь, когда вызовется деструктор =)"
         ],
         failure: [
-            "Pfffft!",
-            "What we don't know is what usually gets us killed."
+            "Ошибочка!",
+            "Этого нельзя сделать вручную. Только Garbage Collector может уничтожить объект"
         ]
     }, {
-        question: "Who said, \"Some day I'm gonna put a sword through your eye and out the back of your skull\"?",
+        question: "Данные типов со знаком имеют равное количество положительны ненулевых и отрицательных значений.",
         answers: [
-            "Theon Greyjoy",
-            "Shae",
-            "Arya Stark",
-            "The Mountain"
-        ],
-        correctAnswer: 2,
-        success: [
-            "Ludicrous Speed!",
-            "Chaos isn't a pit. Chaos is a ladder."
-        ],
-        failure: [
-            "Uh-oh!",
-            "Nothing isn't better or worse than anything. Nothing is just nothing."
-        ]
-    }, {
-        question: "Who was burned alive on Drogo's funeral pyre?",
-        answers: [
-            "Khal Drogo",
-            "Mirri Maz Duur",
-            "Maris Piper",
-            "Septa Mordane"
+            "Истинно",
+            "Ложно",
+            "В Java равное кол-во",
+            "Пропустить"
         ],
         correctAnswer: 1,
         success: [
-            "Off the charts!",
-            "A dragon is not a slave."
+            "Ты справился!",
+            "Видимо, ты помнишь, что отрицательных - больше."
         ],
         failure: [
-            "Yikes!",
-            "Any man who must say 'I am the king' is no true king."
+            "Ой, кто тут типы не знает?",
+            "Разность между количеством отрицательных чисел и количеством положительных чисел равна единице (отрицательных чисел больше)."
         ]
     }, {
-        question: "Who said, \"If you ever call me sister again, I'll have you strangled in your sleep\"?",
+        question: "Если исходый файл включает в себя все три высокоуровневых элемента, какова их последовательность?",
         answers: [
-            "Annie Lennox",
-            "Meg White",
-            "Catelyn Stark",
-            "Cersei Lannister"
+            "Импорты, декларация пакета, классы",
+            "Классы, импорты, декларация пакета",
+            "Декларация пакета идёт первой, а порядок импортов и классов не существенен",
+            "Декларация пакета, импорты, классы"
         ],
         correctAnswer: 3,
         success: [
-            "Yo-ho-ho!",
-            "A very small man can cast a very large shadow."
+            "Умница!",
+            "Знаешь структуру файла, поздравляю!"
         ],
         failure: [
-            "Zoinks!",
-            "If you think this has a happy ending, you haven’t been paying attention."
+            "Ну как так?!",
+            "Порядок Декларация пакета, импорты, классы должен быть соблюдён строго"
+        ]
+    }, {
+        question: "Кто создал язык Java?",
+        answers: [
+            "Джеймс Гослинг",
+            "Деннис Ритчи",
+            "Бьёрн Страуструп",
+            "Никлаус Вирт"
+        ],
+        correctAnswer: 0,
+        success: [
+            "Ты прав!",
+            "Как его вообще можно не знать? =)"
+        ],
+        failure: [
+            "Ох!",
+            "Ты ошибся! Как такое можно не знать? "
+        ]
+    }, {
+        question: "Java – регистрочувствительный язык программирования?",
+        answers: [
+            "Конечно, да",
+            "Нет",
+            "Java - точно нет",
+            "Пропустить"
+        ],
+        correctAnswer: 0,
+        success: [
+            "Поздравляю!",
+            "Java такой чувствительный"
+        ],
+        failure: [
+            "Вот-те на!",
+            "Java, как и все семейство Си, чувствительный к регистру"
+        ]
+    }, {
+        question: "Java относится к семейству Си-подных языков?",
+        answers: [
+            "Конечно, да",
+            "Нет",
+            "Не думаю, что Java Си-подобен",
+            "Скорее нет, чем да"
+        ],
+        correctAnswer: 0,
+        success: [
+            "Поздравляю!",
+            "Как это можно не знать ?)"
+        ],
+        failure: [
+            "Ошибка!",
+            "Как тебе только не стыдно?"
         ]
     }]
 };
@@ -337,7 +337,7 @@ function checkAnswer(userAnswer, quiz) {
     }
     else {
         // иначе
-        $(".desc-wrong-answer").html("The correct answer was <strong>" + quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer] + "</strong>.");
+        $(".desc-wrong-answer").html("Правильный ответ это: <strong>" + quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer] + "</strong>.");
         return false;
     }
 }
