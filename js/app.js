@@ -180,11 +180,77 @@ var quiz = {
 
 
  $(function() {
+	 
  $('#btn-start').click(function() {
         $('#intro').fadeOut('fast', function() {
             $('#questions').removeAttr('hidden');
         });
-       // runQuiz(quiz); 
+        runQuiz(quiz); 
+    });
+	
+	// Рандом вопросов при первом запуске
+    quiz.randomQuestions = shuffleArr([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
+
+    // Управление настройками видиости выбранной кнопки
+    $('.radio label').hover(
+        function() {
+            if (!$(this).children('input[type="radio"]').is(':checked')) {
+                $(this).css('background', '#6FC6FF');
+            }
+        }, function() {
+            if (!$(this).children('input[type="radio"]').is(':checked')) {
+                $(this).css('background', '#55acee');
+            }
+        }
+    );
+
+    // Клики на кнопки
+    $('.radio label').click(function() {
+        $('.action-button .btn-next').removeClass('disabled');
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        $(this).children('input[type="radio"]').prop('checked', true);
+        $(this).css({'background': '#55acee', 'box-shadow': '0px 1px 0px 0px #55acee', 'transform': 'translate(0px, 5px)', '-webkit-transform': 'translate(0px, 5px)'});
+        $(this).children('.options').css({'font-weight': 'bold', 'font-style': 'italic'});
+    });
+	
+	// Кнопка заного
+    $('#questions').on('click', '.btn-reset', function() {
+        resetQuiz(quiz);
+        runQuiz(quiz);
+        // Сбросить и снять флажки переключателей
+        $('.radio label').children('input[type="radio"]').prop('checked', false);
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        // Отключение повторного нажатия кнопки
+        $('.action-button .btn-next').addClass('disabled');
+    });
+
+    // Клик по кнопке ответа
+    $('#questions').on('click', '.btn-next', function() {
+        var userAnswer = $('input[name=option]:checked').siblings('.options').text();
+        calculateScore(checkAnswer(userAnswer, quiz), quiz);
+        failSuccess(quiz, userAnswer);
+        // Сбросить для кнопки 
+        $('.radio label').children('input[type="radio"]').prop('checked', false);
+        $('.options').css({'font-weight': 'normal', 'font-style': 'normal'});
+        $('.radio label').css({'background': '#55acee', 'box-shadow': '0px 5px 0px 0px #3C93D5'});
+        // Отключить кнопку отправки еще раз
+        $('.action-button .btn-next').addClass('disabled');
+    });
+
+    // Нажать кнопку продолжить
+    $(".answer-success, .answer-failure").on('click', '.continue', function() {
+        $('.answer-success, .answer-failure').attr('hidden', true);
+        // увеличили номер вопроса
+        quiz.questionNumber += 1;
+        runQuiz(quiz);
+    });
+
+    // кнопка начать заного
+    $('#finish').on('click', '.btn-reset', function() {
+        resetQuiz(quiz);
+        runQuiz(quiz);
     });
 	
 	});
@@ -262,3 +328,39 @@ function resetQuiz(quiz) {
     quiz.correct = 0;
     quiz.incorrect = 0;
 }
+
+// Вернет правду или ложь на ответ пользователя
+function checkAnswer(userAnswer, quiz) {
+    // верный ответ
+    if (userAnswer === quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer]) {
+        return true;
+    }
+    else {
+        // иначе
+        $(".desc-wrong-answer").html("The correct answer was <strong>" + quiz.questions[quiz.randomQuestions[quiz.questionNumber]].answers[quiz.questions[quiz.randomQuestions[quiz.questionNumber]].correctAnswer] + "</strong>.");
+        return false;
+    }
+}
+
+// Подсчет, сколько верных и неверных ответов
+function calculateScore(answerResult, quiz) {
+    if (answerResult) {
+        quiz.correct += 1;
+    } else {
+        quiz.incorrect += 1;
+    }
+}
+
+// Генерирует уникальные рандомные числа от 0 до 10
+function shuffleArr(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+
+    return array;
+}
+
+
